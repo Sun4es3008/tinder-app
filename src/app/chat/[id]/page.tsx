@@ -10,12 +10,11 @@ export const revalidate = 0;
 export default async function ChatPage({ params }: { params: Promise<{ id: string }> }) {
   const { id: partnerId } = await params;
 
-
-  const partner = await prisma.user.findUnique({
+  const partnerRaw = await prisma.user.findUnique({
     where: { id: partnerId }
   });
 
-  if (!partner) {
+  if (!partnerRaw) {
     notFound();
   }
 
@@ -34,12 +33,16 @@ export default async function ChatPage({ params }: { params: Promise<{ id: strin
 
   const initialMessages = await getMessages(match.id);
 
+  // Сериализуем Date → string для передачи в клиентские компоненты
+  const partner = JSON.parse(JSON.stringify(partnerRaw));
+  const messages = JSON.parse(JSON.stringify(initialMessages));
+
   return (
     <div className="w-full h-full flex flex-col bg-zinc-950">
-      <ChatClient 
-        matchId={match.id} 
-        partner={partner} 
-        initialMessages={JSON.parse(JSON.stringify(initialMessages))} 
+      <ChatClient
+        matchId={match.id}
+        partner={partner}
+        initialMessages={messages}
       />
     </div>
   );

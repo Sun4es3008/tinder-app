@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --primary: #ff4458;
+  --primary-gradient: linear-gradient(135deg, #ff4458 0%, #ff5e3a 50%, #ff7b2b 100%);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Эффекты стеклянного размытия (Glassmorphism) */
+.glass {
+  background: rgba(18, 18, 20, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(24, 24, 27, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Градиенты бренда */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, #fd267d 0%, #ff7854 100%);
+}
+
+.text-brand-gradient {
+  background: linear-gradient(135deg, #fd267d 0%, #ff7854 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Скрытие скроллбара */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Градиентный оверлей на карточках */
+.card-gradient-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 30%, transparent 65%);
+}

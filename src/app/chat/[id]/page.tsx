@@ -7,8 +7,9 @@ const CURRENT_USER_ID = 'currentUser';
 
 export const revalidate = 0;
 
-export default async function ChatPage({ params }: { params: { id: string } }) {
-  const partnerId = params.id;
+export default async function ChatPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: partnerId } = await params;
+
 
   const partner = await prisma.user.findUnique({
     where: { id: partnerId }
